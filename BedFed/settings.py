@@ -113,6 +113,15 @@ TEMPLATE_DIRS = (
                     os.path.join(SITE_ROOT, 'templates'),
                 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'zinnia.context_processors.version',
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,6 +134,11 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'BedFed.Hosts',
+#    'akismet',
+    'django.contrib.comments',
+    'tagging',
+    'zinnia',
+    'mptt',
 #    'django-google-maps',
 )
 

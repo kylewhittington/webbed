@@ -20,5 +20,7 @@ urlpatterns = patterns('',
     url(r'^search/', 'Hosts.views.search'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    url(r'^weblog/', include('zinnia.urls')),
+    url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'$', 'Hosts.views.home'),
 )
