@@ -72,7 +72,12 @@
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 
-    {% block scripts %}
+    <link type="text/css" href="/media/jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="Stylesheet" />
+    <script type="text/javascript" src="/media/jquery/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/media/jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="/media/scripts/bootstrap-alert.js"></script>
+
+    {% block head %}
     {% endblock %}
 
   </head>
@@ -103,11 +108,9 @@
       <div class="content">
         <div class="page-header">
           {% block title %}
-              <h1>Welcome</h1>
           {% endblock %}
         </div>
         {% block content %}
-            <h2>Where are you going?</h2>
         {% endblock %}
       </div>
 

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block title %}
+    <h1>Search <small>hopefully we have something you're looking for</small></h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span10">
+            <h2>Search results</h2>
+            <p>
+                Searched for properties containing <strong>'{{ search_terms }}'</strong>
+            </p>
+            <br />
+            {% if properties %}
+                {% for property in properties %}
+                    <div class="search_result_pane">
+                        <h2 style="text-align: left">{{ property.heading }}
+                            <small style="text-align: right">{{ property.city }}</small>
+                        </h2>
+                        {{ property.user.username }}
+                        <p>
+                            {{ property.long_desc }}
+                        </p>
+                        <div id="map" style="width:150px; height:150px"></div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>
+                    No results, sorry!
+                </p>
+            {% endif %}
+        </div>
+        <div class="span4">
+            <h3>Sidebar</h3>
+        </div>
+    </div>
+{% endblock %}

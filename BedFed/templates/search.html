@@ -20,53 +20,53 @@
 {#            }#}
 {#        }#}
 {#    </script>#}
-    <script>
-        var localSearch;
-        var map;
-        var icon;
-        var addressMarkerOptions;
-        google.load("search", "1");
-        google.load("maps", "2");
-        google.setOnLoadCallback(initialize);
-
-        function initialize()
-        {
-            localSearch = new GlocalSearch();
-            icon = new GIcon(G_DEFAULT_ICON);
-            addressMarkerOptions = { icon:icon , draggable: false};
-            map = new GMap2(document.getElementById("map"));
-            map.addControl(new GLargeMapControl());
-            map.addControl(new GMapTypeControl());
-            plotAddress("OX4 1FJ");
-        }
-
-        /**
-         * This takes either a postcode or an address string
-         *
-         */
-        function plotAddress(address)
-        {
-            localSearch.setSearchCompleteCallback(null,
-                    function() {
-
-                        if (localSearch.results[0])
-                        {
-                            var resultLat = localSearch.results[0].lat;
-                            var resultLng = localSearch.results[0].lng;
-                            var point = new GLatLng(resultLat,resultLng);
-                            var marker = new GMarker(point, addressMarkerOptions);
-                            map.addOverlay(marker);
-                            map.setCenter(point, 5, G_NORMAL_MAP);
-                        }
-                        else
-                        {
-                            alert('address not found');
-                        }
-                    });
-
-            localSearch.execute(address + ", UK");
-        }
-    </script>
+{#    <script>#}
+{#        var localSearch;#}
+{#        var map;#}
+{#        var icon;#}
+{#        var addressMarkerOptions;#}
+{#        google.load("search", "1");#}
+{#        google.load("maps", "2");#}
+{#        google.setOnLoadCallback(initialize);#}
+{##}
+{#        function initialize()#}
+{#        {#}
+{#            localSearch = new GlocalSearch();#}
+{#            icon = new GIcon(G_DEFAULT_ICON);#}
+{#            addressMarkerOptions = { icon:icon , draggable: false};#}
+{#            map = new GMap2(document.getElementById("map"));#}
+{#            map.addControl(new GLargeMapControl());#}
+{#            map.addControl(new GMapTypeControl());#}
+{#            plotAddress("OX4 1FJ");#}
+{#        }#}
+{##}
+{#        /**#}
+{#         * This takes either a postcode or an address string#}
+{#         *#}
+{#         */#}
+{#        function plotAddress(address)#}
+{#        {#}
+{#            localSearch.setSearchCompleteCallback(null,#}
+{#                    function() {#}
+{##}
+{#                        if (localSearch.results[0])#}
+{#                        {#}
+{#                            var resultLat = localSearch.results[0].lat;#}
+{#                            var resultLng = localSearch.results[0].lng;#}
+{#                            var point = new GLatLng(resultLat,resultLng);#}
+{#                            var marker = new GMarker(point, addressMarkerOptions);#}
+{#                            map.addOverlay(marker);#}
+{#                            map.setCenter(point, 5, G_NORMAL_MAP);#}
+{#                        }#}
+{#                        else#}
+{#                        {#}
+{#                            alert('address not found');#}
+{#                        }#}
+{#                    });#}
+{##}
+{#            localSearch.execute(address + ", UK");#}
+{#        }#}
+{#    </script>#}
 {% endblock %}
 
 {% block title %}
