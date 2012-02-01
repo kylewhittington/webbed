@@ -10,33 +10,43 @@
 
 {% endblock %}
 
-{% block title %}
-    <h1>Welcome</h1>
-{% endblock %}
+{#{% block title %}#}
+{#{% endblock %}#}
 
 {% block content %}
-    <br />
-    <br />
-    <div style="float: none;text-align: center">
-        <h2>Where are you going?</h2>
-        <form action="/search/" method="get" class="form-search">
-            <input type="text" class="input-xlarge search-query" name="search_terms">
-            <input type="submit" class="btn" value="Search">
-            <br />
-            <br />
-            <p>
-                Arriving
-                <input style="padding: 5px; margin-right:15px;" type="text" class="input-small date-picker" name="arrival_date" />
-                Leaving
-                <input style="padding: 5px; margin-left:5px;" type="text" class="input-small date-picker" name="dept_date" />
-            </p>
-        </form>
-        {% if error %}
-            <br/>
-            <div class="alert-message danger">
-                <a class="close" data-dismiss="alert" href="#">&times;</a>
-                <strong>You never entered any search terms or selected dates!</strong>
+    <div class="row">
+        <div class="well span6">
+            {% if error %}
+                <br/>
+                <div class="alert-message danger">
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                    <strong>You never entered any search terms or selected dates!</strong>
+                </div>
+            {% else %}
+            {% endif %}
+
+            <div style="float: none;text-align: left">
+                <h2>Where are you going?</h2>
+                <form action="/search/" method="get" class="form-search">
+                    <input type="text" class="input-xlarge search-query" name="search_terms">
+                    <br />
+                    <br />
+                    <p>
+                        Arriving on
+                        <input style="padding: 5px; margin-left:15px;" type="text" class="input-medium date-picker" name="arrival_date" value="02/02/2012"/>
+                    </p>
+                    <p>
+                        Leaving on
+                        <input style="padding: 5px; margin-left:15px;" type="text" class="input-medium date-picker" name="dept_date" value="05/02/2012"/>
+                        <input type="submit" class="btn primary" style="float:right" value="Search">
+                    </p>
+                </form>
             </div>
-        {% endif %}
+        </div>
+        <div class="span6">
+            <h1>Welcome to Bed & Fed</h1>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+            <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.    </p>
+        </div>
     </div>
 {% endblock %}
