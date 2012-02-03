@@ -7,6 +7,7 @@ from BedFed import settings
 import Hosts
 
 admin.autodiscover()
+from django.contrib.auth.views import login, logout
 
 urlpatterns = patterns('',
     # Examples:
@@ -22,5 +23,6 @@ urlpatterns = patterns('',
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'$', 'Hosts.views.home'),
 )

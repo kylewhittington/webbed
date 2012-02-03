@@ -120,6 +120,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'zinnia.context_processors.version',
+#    'django.contrib.auth.context_processors.csrf',
+    'django.contrib.auth.context_processors.auth',
+
 )
 
 INSTALLED_APPS = (
@@ -139,6 +142,7 @@ INSTALLED_APPS = (
     'tagging',
     'zinnia',
     'mptt',
+    'registration'
 #    'django-google-maps',
 )
 

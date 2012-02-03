@@ -9,8 +9,11 @@
 
 {% block content %}
     <div class="row">
-        <div class="span10">
+        <div class="span8">
             <h2>Search results</h2>
+            {% if userauthenticated %}
+                <p>User is authed!</p>
+            {% endif %}
             <p>
                 Searched for properties containing <strong>'{{ search_terms }}'</strong>
             </p>
@@ -25,7 +28,6 @@
                         <p>
                             {{ property.long_desc }}
                         </p>
-                        <div id="map" style="width:150px; height:150px"></div>
                     </div>
                 {% endfor %}
             {% else %}
