@@ -24,5 +24,6 @@ urlpatterns = patterns('',
     url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^contact/', 'Hosts.views.contact'),
     url(r'$', 'Hosts.views.home'),
 )

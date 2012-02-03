@@ -1,12 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-# Create your models here.
-#class User(models.Model):
-#    def __unicode__(self):
-#        return u'%s %s' % (self.first_name, self.last_name)
-#class Availability(models.Model):
-#    dates_unavailable = models.DateTimeField('unavailability')
+from django import forms
 
 class Property(models.Model):
     user = models.ForeignKey(User)
@@ -40,4 +34,8 @@ class Booking(models.Model):
     arrival_date = models.DateTimeField('arrival date')
     dept_date = models.DateTimeField('departure date')
     #invoice = models.ForeignKey(Invoice)
-    
+
+class ContactForm(forms.Form):
+    subject = forms.CharField()
+    email = forms.EmailField(required=False)
+    message = forms.CharField(widget=forms.Textarea)

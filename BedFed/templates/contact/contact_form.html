@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}    
+{% endblock %}
+
+{% block title %}
+    <h1>Contact Us</h1>
+{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <p style="color:red;">
+            Please correct the error {{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" class="btn" value="Submit">
+    </form>
+{% endblock %}
+
+{% block below-content %}
+    <p>
+        We're always happy to get feedback on any issues you're finding with the site, whether you're a host
+        or just a passer by. Please don't hesitate to give us a call if it's something we may be able to help
+        you with over the phone.
+    </p>
+{% endblock %}
