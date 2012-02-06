@@ -21,10 +21,10 @@
             {% if properties %}
                 {% for property in properties %}
                     <div class="search_result_pane">
-                        <h2 style="text-align: left">{{ property.heading }}
+                        <h2 style="text-align: left">
+                            <a href="/property/{{ property.id }}/{{ arrival_date|date:"Ymd"}}/{{ dept_date|date:"Ymd" }}/">{{ property.heading }}</a>
                             <small style="text-align: right">{{ property.city }}</small>
                         </h2>
-                        {{ property.user.username }}
                         <p>
                             {{ property.long_desc }}
                         </p>

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from Hosts.models import Invoice
 
 __author__ = 'flipflop'
 
@@ -20,7 +21,11 @@ class ReviewAdmin(admin.ModelAdmin):
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('user', 'property', 'arrival_date')
 
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = ('booking', 'paid')
+
 #admin.site.register(User, UserAdmin)
 admin.site.register(Property, PropertyAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Booking, BookingAdmin)
+admin.site.register(Invoice, InvoiceAdmin)

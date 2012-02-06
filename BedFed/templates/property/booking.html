@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{# property, user, search_request #}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span7">
+            <div class="sub-header">
+                <h1 style="font-weight: strong;">
+                    Make a booking
+                </h1>
+            </div>
+            <div class="sub-header">
+                <h2>Your booking details</h2>
+            </div>
+            <table class="table table-bordered">
+                <tr>
+                    <td><strong>Arriving on</strong></td>
+                    <td>tbi</td>
+                </tr>
+                <tr>
+                    <td><strong>Leaving on</strong></td>
+                    <td>tbi</td>
+                </tr>
+                <tr>
+                    <td><strong>Total nights</strong></td>
+                    <td>tbi</td>
+                </tr>
+                <tr>
+                    <td><strong>Total due</strong></td>
+                    <td><strong>tbi</strong></td>
+                </tr>
+            </table>
+            <br/>
+            <br/>
+            <div class="sub-header">
+                <h2>Payment details</h2>
+            </div>
+            {% if paymentform.errors %}
+                <p style="color:red;">
+                    Please correct the error {{ form.errors|pluralize }} below.
+                </p>
+            {% endif %}
+            <form action="" method="post">
+                {% csrf_token %}
+                <table>
+                    {{ paymentform.as_table }}
+                </table>
+                <input type="submit" class="btn-primary btn-large" value="Pay now" style="float:right">
+            </form>
+        </div>
+        <div class="span4" style="border-left:1px solid #eee; padding-left:20px;">
+            <div class="sub-header">
+                <h2>Property details</h2>
+            </div>
+            <table class="table table-bordered" style="width:100%">
+                <tr>
+                    <td><strong>Your host</strong></td>
+                    <td>{{ property.user.username }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Their email</strong></td>
+                    <td>{{ property.user.email }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Their contact number</strong></td>
+                    <td>{{ property.user.telephone }}</td>
+                </tr>
+                <tr>
+                    <td><strong>City</strong></td>
+                    <td>{{ property.city }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Postcode</strong></td>
+                    <td>{{ property.postcode }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Price</strong></td>
+                    <td>£{{ property.price }} (pppn)</td>
+                </tr>
+            </table>
+            <br/>
+            <div class="sub-header">
+                <h2>Property location</h2>
+            </div>
+            <div class="thumbnail" style="background-color: #ffffff;">
+                <img src="http://placehold.it/368x250" alt="">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block below-content %}
+{% endblock %}

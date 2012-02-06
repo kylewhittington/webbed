@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span7">
+            <h2>
+                <div class="thumbnail" style="background-color: #ffffff; width:100px; float:left; margin-bottom:10px">
+                    <img src="http://placehold.it/100x100" alt="">
+                </div>
+                <div style="">{{ property.heading }}
+                    </div>
+            </h2>
+            <br/>
+            <br/>
+            <table class="table table-bordered" style="width:100%">
+                <tr>
+                    <td><strong>Postcode</strong></td>
+                    <td>{{ property.postcode }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Price</strong></td>
+                    <td>£{{ property.price }} per person per night</td>
+                </tr>
+                <tr>
+                    <td><strong>City</strong></td>
+                    <td>{{ property.city }}</td>
+                </tr>
+            </table>
+            <p>{{ property.short_desc }}</p>
+            <br/>
+            <br/>
+            <div class="sub-header">
+                <h2>A little more detail</h2>
+            </div>
+            <p>{{ property.long_desc }}</p>
+            <br/>
+            <br/>
+            <div class="sub-header">
+                <h2>Your host</h2>
+            </div>
+            <table class="table table-bordered">
+                <tr>
+                    <td><strong>Username</strong></td>
+                    <td>{{ property.user.username }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Rating</strong></td>
+                    <td>***** (5 out of 5)</td>
+                </tr>
+                <tr>
+                    <td><strong>Email</strong></td>
+                    <td>{{ property.user.email }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Contact Number</strong></td>
+                    <td>{{ property.user.telephone }}</td>
+                </tr>
+            </table>
+            <br/>
+            <br/>
+            <div class="sub-header">
+                <h2>Reviews</h2>
+            </div>
+            <p>There are currently no reviews.</p>
+        </div>
+        <div class="span5">
+            <div class="sub-header">
+                <h2>
+                    Your request                   
+                </h2>
+            </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <td><strong>Arriving on</strong></td>
+                        <td>{{ arrival_date|date:"d/m/Y" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Leaving on</strong></td>
+                        <td>{{ dept_date|date:"d/m/Y" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nights requested</strong></td>
+                        <td>{{ nights }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Booking cost</strong></td>
+                        <td>£ {{ booking_cost }}</td>
+                    </tr>
+                </table>
+                <div style="float:right">
+                <button class="btn btn-primary" onclick="location.href='/property/{{ property.id }}/book/'">Make the booking</button>
+                <button class="btn" onclick="location.href='/'">Back to results</button>
+                </div>
+            <br/>
+            <br/>
+            <div class="sub-header">
+                <h2>Take a closer look
+                </h2>
+            </div>
+            <div class="thumbnail" style="background-color: #ffffff;">
+                <img src="http://placehold.it/368x250" alt="">
+            </div>
+
+            <div class="sub-header">
+                <h2>Map of where it is</h2>
+            </div>
+            <div class="thumbnail" style="background-color: #ffffff;">
+                <img src="http://placehold.it/368x250" alt="">
+            </div>
+            <div class="sub-header">
+            <h3>What's nearby?</h3>
+            </div>
+            <ul>
+                <li>A cool little pub</li>
+                <li>Some other things to do</li>
+                <li>Small post office</li>
+            </ul>
+        </div>
+    </div>
+
+
+{#        <div class="row">#}
+{#            <div class="span7" style="border-right: 1px solid #eee; padding-right:40px">#}
+{#                <div class="sub-header">#}
+{#                <h2 style="font-weight: strong;">#}
+{#                    Details of the place#}
+{#                </h2>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="span4">#}
+{#                <div class="sub-header">#}
+{#                    <h2>Map of where it is</h2>#}
+{#                </div>#}
+{#                <div class="thumbnail" style="background-color: #ffffff;">#}
+{#                    <img src="http://placehold.it/300x250" alt="">#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="row">#}
+{#            <div class="span7" style="border-right: 1px solid #eee; padding-right:40px">#}
+{#                <table class="table table-bordered">#}
+{#                    <tr>#}
+{#                        <td><strong>Your Host</strong></td>#}
+{#                        <td>{{ property.user }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><strong>Postcode</strong></td>#}
+{#                        <td>{{ property.postcode }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><strong>Price</strong></td>#}
+{#                        <td>£{{ property.price }} per person per night</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><strong>City</strong></td>#}
+{#                        <td>{{ property.city }}</td>#}
+{#                    </tr>#}
+{#                </table>#}
+{#                <p>{{ property.short_desc }}</p>#}
+{#            </div>#}
+{#            <div class="span7" style="border-right: 1px solid #eee; padding-right:40px">#}
+{#                <div class="sub-header">#}
+{#                    <h2>Take a closer look ...</h2>#}
+{#                </div>#}
+{#                <ul class="thumbnails">#}
+{#                    <li class="span4">#}
+{#                        <div class="thumbnail" style="background-color: #ffffff;">#}
+    {#                            <div style="text-align: center">#}
+    {#                                <h5>Image 1</h5>#}
+    {#                            </div>#}
+{#                            <img src="http://placehold.it/288x180" alt="">#}
+{#                        </div>#}
+{#                    </li>#}
+{#                    <li class="span2">#}
+{#                        <div class="thumbnail" style="background-color: #ffffff;">#}
+{#                            <img src="http://placehold.it/130x80" alt="">#}
+{#                        </div>#}
+{#                    </li>#}
+{#                    <li class="span2">#}
+{#                        <div class="thumbnail" style="background-color: #ffffff;">#}
+{#                            <img src="http://placehold.it/130x80" alt="">#}
+{#                        </div>#}
+{#                    </li>#}
+{##}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="span7" style="border-right: 1px solid #eee; padding-right:40px">#}
+{#                <div class="sub-header">#}
+{#                    <h2>A little more detail ...</h2>#}
+{#                </div>#}
+{#                <p>{{ property.long_desc }}</p>#}
+{#            </div>#}
+{#        </div>#}
+{% endblock %}
+
+{% block below-content %}
+{% endblock %}
