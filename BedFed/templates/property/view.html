@@ -1,43 +1,114 @@
 {% extends "base.html" %}
 
 {% block head %}
+    <script type="text/javascript">
+        var geocoder;
+        var map;
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var myOptions = {
+                zoom: 13,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scrollwheel: false,
+                mapTypeControl: false,
+                zoomControl: false,
+                streetViewControl: false,
+            }
+            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            var address = document.getElementById("postcode").value;
+            geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            });
+        }
+
+        function loadScript() {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyCzU_LoeAOdyrVx50NHGJEqOk1J8ZIPC8c&sensor=false&callback=initialize";
+            document.body.appendChild(script);
+        }
+        window.onload = loadScript;
+    </script>    
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="span7">
-            <h2>
-                <div class="thumbnail" style="background-color: #ffffff; width:100px; float:left; margin-bottom:10px">
-                    <img src="http://placehold.it/100x100" alt="">
+            <div class="thumbnail" style="background-color: #ffffff;">
+                <img src="/media/img/cool-beach-house-plans-4-530x300.jpg" alt="">
+                <div class="caption">
+                    <h3>{{ property.heading }}</h3>
+                    <p>{{ property.short_desc }}</p>
                 </div>
-                <div style="">{{ property.heading }}
-                    </div>
-            </h2>
+            </div>
             <br/>
-            <br/>
-            <table class="table table-bordered" style="width:100%">
-                <tr>
-                    <td><strong>Postcode</strong></td>
-                    <td>{{ property.postcode }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Price</strong></td>
-                    <td>£{{ property.price }} per person per night</td>
-                </tr>
-                <tr>
-                    <td><strong>City</strong></td>
-                    <td>{{ property.city }}</td>
-                </tr>
-            </table>
-            <p>{{ property.short_desc }}</p>
-            <br/>
-            <br/>
+
             <div class="sub-header">
                 <h2>A little more detail</h2>
             </div>
             <p>{{ property.long_desc }}</p>
             <br/>
             <br/>
+            <div class="sub-header">
+                <h2>Reviews</h2>
+            </div>
+            <p>There are currently no reviews.</p>
+        </div>
+        <div class="span5">
+            <div class="thumbnail" style="background-color: #ffffff;">
+                <div id="map_canvas" style="width:368; height:250px"></div>
+                {#                <img src="http://placehold.it/368x250" alt="">#}
+            </div>
+            <br/>
+            <table class="table table-bordered" style="width:100%">
+                <tr>
+                    <td><strong>Postcode</strong></td>
+                    <td>{{ property.postcode }}</td>
+                    <input type="hidden" id="postcode" value="{{ property.postcode }}">
+                </tr>
+                <tr>
+                    <td><strong>Price</strong></td>
+                    <td>£{{ property.price|floatformat:2 }} per person per night</td>
+                </tr>
+                <tr>
+                    <td><strong>City</strong></td>
+                    <td>{{ property.city }}</td>
+                </tr>
+            </table>
+
+            <div class="sub-header">
+                <h2>
+                    Your request                   
+                </h2>
+            </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <td><strong>Arriving on</strong></td>
+                        <td>{{ arrival_date|date:"d/m/Y" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Leaving on</strong></td>
+                        <td>{{ dept_date|date:"d/m/Y" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nights requested</strong></td>
+                        <td>{{ nights }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Booking cost (estimated)</strong></td>
+                        <td>£ {{ booking_cost    }}</td>
+                    </tr>
+                </table>
             <div class="sub-header">
                 <h2>Your host</h2>
             </div>
@@ -59,65 +130,12 @@
                     <td>{{ property.user.telephone }}</td>
                 </tr>
             </table>
-            <br/>
-            <br/>
-            <div class="sub-header">
-                <h2>Reviews</h2>
-            </div>
-            <p>There are currently no reviews.</p>
-        </div>
-        <div class="span5">
-            <div class="sub-header">
-                <h2>
-                    Your request                   
-                </h2>
-            </div>
-                <table class="table table-bordered">
-                    <tr>
-                        <td><strong>Arriving on</strong></td>
-                        <td>{{ arrival_date|date:"d/m/Y" }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Leaving on</strong></td>
-                        <td>{{ dept_date|date:"d/m/Y" }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Nights requested</strong></td>
-                        <td>{{ nights }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Booking cost</strong></td>
-                        <td>£ {{ booking_cost }}</td>
-                    </tr>
-                </table>
-                <div style="float:right">
-                <button class="btn btn-primary" onclick="location.href='/property/{{ property.id }}/book/'">Make the booking</button>
-                <button class="btn" onclick="location.href='/'">Back to results</button>
-                </div>
-            <br/>
-            <br/>
-            <div class="sub-header">
-                <h2>Take a closer look
-                </h2>
-            </div>
-            <div class="thumbnail" style="background-color: #ffffff;">
-                <img src="http://placehold.it/368x250" alt="">
-            </div>
 
-            <div class="sub-header">
-                <h2>Map of where it is</h2>
-            </div>
-            <div class="thumbnail" style="background-color: #ffffff;">
-                <img src="http://placehold.it/368x250" alt="">
-            </div>
-            <div class="sub-header">
-            <h3>What's nearby?</h3>
-            </div>
-            <ul>
-                <li>A cool little pub</li>
-                <li>Some other things to do</li>
-                <li>Small post office</li>
-            </ul>
+{#                <div style="float:right">#}
+{#                <button class="btn btn-primary" onclick="location.href='/property/{{ property.id }}/book/'">Make the booking</button>#}
+{#                <button class="btn" onclick="location.href='/'">Back to results</button>#}
+{#                </div>#}
+
         </div>
     </div>
 

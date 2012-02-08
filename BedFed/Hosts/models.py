@@ -11,7 +11,7 @@ class Property(models.Model):
     short_desc = models.TextField('short description',max_length=400)
     long_desc = models.TextField('long description',max_length=5000)
     heading = models.CharField('search heading',max_length=50)
-    price = models.FloatField('price per person per night',default=35.00,)
+    price = models.FloatField('price per person per night',default=35.00)
     #availability = models.ForeignKey(Availability)
     def __unicode__(self):
         return u'%s - %s' % (self.user.first_name, self.addressline1)
