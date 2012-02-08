@@ -27,8 +27,8 @@
         }
         .container > .content {
             background-color: #fff;
-            padding: 20px;
-            margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+            padding: 20px 20px 0 20px;
+            margin: 0 -20px 10px -20px; /* negative indent the amount of the padding to maintain the grid system */
             -webkit-border-radius: 0 0 0px 0px;
             -moz-border-radius: 0 0 0px 0px;
             border-radius: 0 0 0px 0px;
@@ -39,8 +39,8 @@
         }
 
         .container > .page-header {
-            padding: 20px;
-            margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+            padding: 20px 20px 0 20px;
+            margin: 0 -20px 10px -20px; /* negative indent the amount of the padding to maintain the grid system */
             -webkit-border-radius: 0 0 6px 6px;
             -moz-border-radius: 0 0 6px 6px;
             border-radius: 0 0 6px 6px;
@@ -100,9 +100,11 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
+              <li><a href="/contact/">How Does It Work?</a></li>
+              <li><a href="/contact/">Become a Host</a></li>
               <li><a href="/weblog/">Blog</a></li>
-              <li><a href="/admin/">Administration</a></li>
               <li><a href="/contact/">Contact Us</a></li>
+              <li style="float:right"><a href="/admin/">Administration</a></li>
             </ul>
             <ul class="nav pull-right">
                 <li>
@@ -128,7 +130,8 @@
         <div class="content">
             <div class="page-header">
                 {% block title %}
-                    <img src="http://placehold.it/940x60" alt="">
+                    <h1 style="color:#0066aa;">bed & fed  <small>... be our guest!</small></h1>
+{#                    <img src="http://placehold.it/940x60" alt="">#}
                 {% endblock %}
             </div>
             {% block content %}
