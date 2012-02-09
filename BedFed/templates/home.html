@@ -7,7 +7,39 @@
             $('.date-picker').datepicker();
         });
     </script>
-
+    <link rel="stylesheet" href="/media/css/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/media/css/nivo-slider-default.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/media/scripts/jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript">
+        jQuery(window).load(function() {
+            jQuery('#slider').nivoSlider({
+                effect: 'sliceDown', // Specify sets like: 'fold,fade,sliceDown'
+                animSpeed: 500, // Slide transition speed
+                pauseTime: 4000, // How long each slide will show
+                startSlide: 0, // Set starting Slide (0 index)
+                directionNav: true, // Next & Prev navigation
+                directionNavHide: true, // Only show on hover
+                controlNav: false, // 1,2,3... navigation
+                controlNavThumbs: false, // Use thumbnails for Control Nav
+                controlNavThumbsFromRel: false, // Use image rel for thumbs
+                controlNavThumbsSearch: '.jpg', // Replace this with...
+                controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
+                keyboardNav: true, // Use left & right arrows
+                pauseOnHover: true, // Stop animation while hovering
+                manualAdvance: false, // Force manual transitions
+                captionOpacity: 0.8, // Universal caption opacity
+                prevText: 'Prev', // Prev directionNav text
+                nextText: 'Next', // Next directionNav text
+                randomStart: false // Start on a random slide
+            })
+        });
+    </script>
+    <style type="text/css">
+    /* Override some defaults */
+        .theme-default .nivoSlider {
+            margin-bottom:0px;
+    }
+    </style>
 {% endblock %}
 
 {#{% block title %}#}
@@ -46,7 +78,13 @@
         </div>
         <div class="span7">
             <div class="thumbnail" style="background-color: #ffffff;">
-                <img src="/media/img/edinburgh_castle.jpg" alt="">
+                <div class="slider-wrapper theme-default">
+                    <div id="slider" class="nivoSlider">
+                        <img src="/media/img/edinburgh_castle.jpg" alt="" title="Go somewhere new and exciting for cheap!"/>
+                        <img src="/media/img/530x200_oxford.jpg" alt="" title="So many places to choose from, so little time."/>
+                        <img src="/media/img/530x200_weight%20loss%20older%20woman.jpg" alt="" title="Hosts in so many different places just waiting to cook you dinner!"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

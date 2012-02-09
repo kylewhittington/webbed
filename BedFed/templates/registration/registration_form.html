@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="sub-header">
+        <h2>Register</h2>
+    </div>
+    {% if form.errors %}
+        <p style="color:red;">
+            Please correct the error {{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" class="btn btn-primary btn-large" value="Register">
+    </form>
+{% endblock %}
+
+{% block below-content %}
+{% endblock %}

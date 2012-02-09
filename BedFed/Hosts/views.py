@@ -2,6 +2,7 @@
 from datetime import datetime
 from pyexpat import model
 import user
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 import Hosts

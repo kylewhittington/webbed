@@ -1,0 +1,13 @@
+Hi there,
+
+You recently registered for an account on {{ site }}. To complete the registration process,
+please confirm your email address by clicking the link below.
+
+<a href="{{ site }}/activate/{{ activation_key }}/">Active my account!</a>
+
+You have {{ expiration_days }} to confirm your account. If you didn't just register for {{ site }}
+then please ignore this email and have a nice day.
+
+We hope you enjoy the site.
+
+Thanks from us at {{ site }} !

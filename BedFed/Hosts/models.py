@@ -63,4 +63,3 @@ class PaymentForm(forms.Form):
     ccnumber = forms.CharField(label='Card Number', max_length=16)
     ccexpiry = forms.CharField(label='Expiry Date (mmyy)', max_length=4)
     cccvc = forms.CharField(label='CVC Number', max_length=3)
-

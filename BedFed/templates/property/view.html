@@ -1,6 +1,34 @@
 {% extends "base.html" %}
 
 {% block head %}
+    <link rel="stylesheet" href="/media/css/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/media/css/nivo-slider-default.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/media/scripts/jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript">
+        jQuery(window).load(function() {
+            jQuery('#slider').nivoSlider({
+                effect: 'fade', // Specify sets like: 'fold,fade,sliceDown'
+                animSpeed: 500, // Slide transition speed
+                pauseTime: 6000, // How long each slide will show
+                startSlide: 0, // Set starting Slide (0 index)
+                directionNav: true, // Next & Prev navigation
+                directionNavHide: false, // Only show on hover
+                controlNav: false, // 1,2,3... navigation
+                controlNavThumbs: false, // Use thumbnails for Control Nav
+                controlNavThumbsFromRel: false, // Use image rel for thumbs
+                controlNavThumbsSearch: '.jpg', // Replace this with...
+                controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
+                keyboardNav: true, // Use left & right arrows
+                pauseOnHover: true, // Stop animation while hovering
+                manualAdvance: false, // Force manual transitions
+                captionOpacity: 0.8, // Universal caption opacity
+                prevText: 'Prev', // Prev directionNav text
+                nextText: 'Next', // Next directionNav text
+                randomStart: false // Start on a random slide
+            })
+        });
+    </script>
+
     <script type="text/javascript">
         var geocoder;
         var map;
@@ -38,14 +66,22 @@
             document.body.appendChild(script);
         }
         window.onload = loadScript;
-    </script>    
+    </script>
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="span7">
             <div class="thumbnail" style="background-color: #ffffff;">
-                <img src="/media/img/cool-beach-house-plans-4-530x300.jpg" alt="">
+
+                <div class="slider-wrapper theme-default">
+
+                    <div id="slider" class="nivoSlider">
+                        <img src="/media/img/versatile-home-plan-angled-530x300.jpg" alt="" title="House from the drive-way"/>
+                        <img src="/media/img/cool-beach-house-plans-4-530x300.jpg" alt="" title="It has a lovely back room area with a beautiful shag rug."/>
+                        <img src="/media/img/home_IMGP3258_530x300.jpg" alt="" title="The kitchen and patio area, lovely for those long summer nights." />
+                    </div>
+                </div>
                 <div class="caption">
                     <h3>{{ property.heading }}</h3>
                     <p>{{ property.short_desc }}</p>
@@ -56,7 +92,7 @@
             <div class="sub-header">
                 <h2>A little more detail</h2>
             </div>
-            <p>{{ property.long_desc }}</p>
+            <p style="text-align: justify; padding: 0 0px 0 5px;">{{ property.long_desc }}</p>
             <br/>
             <br/>
             <div class="sub-header">
@@ -67,7 +103,6 @@
         <div class="span5">
             <div class="thumbnail" style="background-color: #ffffff;">
                 <div id="map_canvas" style="width:368; height:250px"></div>
-                {#                <img src="http://placehold.it/368x250" alt="">#}
             </div>
             <br/>
             <table class="table table-bordered" style="width:100%">
@@ -130,88 +165,9 @@
                     <td>{{ property.user.telephone }}</td>
                 </tr>
             </table>
-
-{#                <div style="float:right">#}
-{#                <button class="btn btn-primary" onclick="location.href='/property/{{ property.id }}/book/'">Make the booking</button>#}
-{#                <button class="btn" onclick="location.href='/'">Back to results</button>#}
-{#                </div>#}
-
         </div>
     </div>
 
-
-{#        <div class="row">#}
-{#            <div class="span7" style="border-right: 1px solid #eee; padding-right:40px">#}
-{#                <div class="sub-header">#}
-{#                <h2 style="font-weight: strong;">#}
-{#                    Details of the place#}
-{#                </h2>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="span4">#}
-{#                <div class="sub-header">#}
-{#                    <h2>Map of where it is</h2>#}
-{#                </div>#}
-{#                <div class="thumbnail" style="background-color: #ffffff;">#}
-{#                    <img src="http://placehold.it/300x250" alt="">#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="row">#}
-{#            <div class="span7" style="border-right: 1px solid #eee; padding-right:40px">#}
-{#                <table class="table table-bordered">#}
-{#                    <tr>#}
-{#                        <td><strong>Your Host</strong></td>#}
-{#                        <td>{{ property.user }}</td>#}
-{#                    </tr>#}
-{#                    <tr>#}
-{#                        <td><strong>Postcode</strong></td>#}
-{#                        <td>{{ property.postcode }}</td>#}
-{#                    </tr>#}
-{#                    <tr>#}
-{#                        <td><strong>Price</strong></td>#}
-{#                        <td>£{{ property.price }} per person per night</td>#}
-{#                    </tr>#}
-{#                    <tr>#}
-{#                        <td><strong>City</strong></td>#}
-{#                        <td>{{ property.city }}</td>#}
-{#                    </tr>#}
-{#                </table>#}
-{#                <p>{{ property.short_desc }}</p>#}
-{#            </div>#}
-{#            <div class="span7" style="border-right: 1px solid #eee; padding-right:40px">#}
-{#                <div class="sub-header">#}
-{#                    <h2>Take a closer look ...</h2>#}
-{#                </div>#}
-{#                <ul class="thumbnails">#}
-{#                    <li class="span4">#}
-{#                        <div class="thumbnail" style="background-color: #ffffff;">#}
-    {#                            <div style="text-align: center">#}
-    {#                                <h5>Image 1</h5>#}
-    {#                            </div>#}
-{#                            <img src="http://placehold.it/288x180" alt="">#}
-{#                        </div>#}
-{#                    </li>#}
-{#                    <li class="span2">#}
-{#                        <div class="thumbnail" style="background-color: #ffffff;">#}
-{#                            <img src="http://placehold.it/130x80" alt="">#}
-{#                        </div>#}
-{#                    </li>#}
-{#                    <li class="span2">#}
-{#                        <div class="thumbnail" style="background-color: #ffffff;">#}
-{#                            <img src="http://placehold.it/130x80" alt="">#}
-{#                        </div>#}
-{#                    </li>#}
-{##}
-{#                </ul>#}
-{#            </div>#}
-{#            <div class="span7" style="border-right: 1px solid #eee; padding-right:40px">#}
-{#                <div class="sub-header">#}
-{#                    <h2>A little more detail ...</h2>#}
-{#                </div>#}
-{#                <p>{{ property.long_desc }}</p>#}
-{#            </div>#}
-{#        </div>#}
 {% endblock %}
 
 {% block below-content %}
